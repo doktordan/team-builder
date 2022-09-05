@@ -8,6 +8,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { HttpClientModule } from '@angular/common/http';
 import { TopContainerComponent } from './components/top-container/top-container.component';
 import { StatsCardComponent } from './components/stats-card/stats-card.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { StatsCardComponent } from './components/stats-card/stats-card.component
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],

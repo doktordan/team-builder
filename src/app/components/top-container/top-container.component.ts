@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerType, StateService } from 'src/app/services/state.service';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-top-container',

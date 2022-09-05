@@ -1,22 +1,25 @@
 <ng-container *ngIf="player|async as player;else loading">
-    <div class="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-        <div class="avatar">
-            <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img [src]="player.imageUrl" />
+    <div class="flex w-full justify-center content-center">
+        <div class="m-auto">
+            <div class="avatar">
+                <div class="w-24 rounded-full ring ring-primary">
+                  <img [src]="player.imageUrl" />
+                </div>
             </div>
         </div>
-        <div class="text-center space-y-2 sm:text-left">
-        <div class="space-y-0.5">
-            <p class="text-lg text-black font-semibold">
-            {{player.fname}} {{player.lname}}
-            </p>
-            <div *ngFor="let position of player.position;let i = index" class="badge badge-secondary">{{position}}</div>
+      
+        <div>
+            <div class="space-y-0.5">
+                <p class="text-lg text-black font-semibold">
+                {{player.fname}} {{player.lname}}
+                </p>
+                <div *ngFor="let position of player.position;let i = index" class="badge">{{position}}</div>
+            </div>
+            <input [(ngModel)]="statPosition" (change)="updateStatPosition()" type="range" min="1" [max]="player.stats.length" class="range range-primary" step="1" />
+            <div class="w-full flex justify-between text-xs px-2">
+              <span *ngFor="let stat of player.stats">|</span>
+            </div>   
         </div>
-        <input type="range" min="1" [max]="player.stats.length" [value]="player.stats.length" class="range range-primary" step="1" />
-        <div class="w-full flex justify-between text-xs px-2">
-          <span *ngFor="let stat of player.stats">|</span>
-        </div>   
-    </div>
     </div>
 </ng-container>
 <ng-template #loading>

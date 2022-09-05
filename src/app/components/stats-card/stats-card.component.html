@@ -1,21 +1,22 @@
-<div class="stats stats-vertical shadow">
-  
-    <div class="stat">
-      <div class="stat-title">Downloads</div>
-      <div class="stat-value">31K</div>
-      <div class="stat-desc">Jan 1st - Feb 1st</div>
+<ng-container *ngIf="stats|async as stat;else loading">
+    <div class="stats stats-vertical shadow">
+        <div class="stat">
+        <div class="stat-title">Team</div>
+        <div class="stat-value">{{stat.team}}</div>
+        <div class="stat-desc">{{stat.year}}</div>
+        </div>
+        <div class="stat">
+        <div class="stat-title">Points</div>
+        <div class="stat-value">{{stat.pts}}</div>
+        <div class="stat-desc">{{stat.fg}} (FG%)</div>
+        </div>
+        <div class="stat">
+        <div class="stat-title">Assistance</div>
+        <div class="stat-value">{{stat.ast}}</div>
+        <div class="stat-desc">{{stat.blk}} (blocks)</div>
+        </div>
     </div>
-    
-    <div class="stat">
-      <div class="stat-title">New Users</div>
-      <div class="stat-value">4,200</div>
-      <div class="stat-desc">↗︎ 400 (22%)</div>
-    </div>
-    
-    <div class="stat">
-      <div class="stat-title">New Registers</div>
-      <div class="stat-value">1,200</div>
-      <div class="stat-desc">↘︎ 90 (14%)</div>
-    </div>
-    
-  </div>
+</ng-container>
+<ng-template #loading>
+    <div>Loading ...</div>
+</ng-template>   

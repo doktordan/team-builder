@@ -14,20 +14,22 @@ export type StatisticType = {
     "stl":number;
     "blk":number;
 }
-export type PlayerType = {
+type PlayerType = {
   "id":number;
   "fname":string;
 	"lname":string;
 	"imageUrl":string;
+  "number":number;
 	"stats":StatisticType[]
 }
 
-interface PlayerTypeApi extends PlayerType {
+export interface PlayerTypeApi extends PlayerType {
   "position":number[];
 }
 
 interface PlayerDisplayType extends PlayerType {
   "position":string[];
+  "currentStat":number;
 }
 
 
@@ -37,9 +39,10 @@ interface PlayerDisplayType extends PlayerType {
 export class StateService {
 
   url="assets/players.json"
-  players:PlayerType[] = [];
+  players:PlayerTypeApi[] = [];
   position:Record<number,string> = {1:'Point Guard',2:'Shooting Guard',3:'Forward',4:'Power Forward',5:'Center'}
-  player$ = new BehaviorSubject<PlayerDisplayType | null>(null)
+  player$ = new BehaviorSubject<PlayerDisplayType | null>(null);
+  playerS$ = new BehaviorSubject<PlayerTypeApi[]|null>(null);
   constructor(private http: HttpClient) { }
 
   getPlayers(){
@@ -49,12 +52,27 @@ export class StateService {
   setPlayers(players:PlayerTypeApi[]){
     this.players = players;
     if (this.players.length > 0){
-      this.player$.next(this.preparePlayer(players[0]));
+      this.preparePlayer(players[0]);
+      this.playerS$.next(this.players);
     }
   }
 
-  preparePlayer(player:PlayerTypeApi):PlayerDisplayType{
-    return {...player,position:player?.position?.map((position:number)=>this.position[position])}
+  preparePlayer(player:PlayerTypeApi):void{
+    console.log(player)
+    this.player$.next( {
+      ...player,
+      currentStat:0,
+      position:player?.position?.map((position:number)=>this.position[position])
+    })
+  }
+
+  changeStats(value:number|null){
+    if (!value) return;
+    const currentStat = (this.player$.value?.stats.length || 0) - value;
+    this.player$.next({
+      ...this.player$.value!,
+      currentStat
+    })
   }
 
 }
