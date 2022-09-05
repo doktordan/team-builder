@@ -58,7 +58,6 @@ export class StateService {
   }
 
   preparePlayer(player:PlayerTypeApi):void{
-    console.log(player)
     this.player$.next( {
       ...player,
       currentStat:0,
