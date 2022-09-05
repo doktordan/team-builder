@@ -9,7 +9,7 @@ import { PlayerType, StateService } from 'src/app/services/state.service';
 export class TopContainerComponent implements OnInit {
 
   constructor(private state:StateService) { 
-    state.getPlayers().subscribe(((data:PlayerType[])=>this.state.setPlayers(data)));
+    state.getPlayers().subscribe(((data)=>this.state.setPlayers(data)));
   }
 
   ngOnInit(): void {

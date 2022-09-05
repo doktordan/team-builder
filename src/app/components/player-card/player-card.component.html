@@ -1,17 +1,22 @@
 <ng-container *ngIf="player|async as player;else loading">
     <div class="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-        <img class="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" [src]="player.imageUrl" alt="Woman's Face">
+        <div class="avatar">
+            <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img [src]="player.imageUrl" />
+            </div>
+        </div>
         <div class="text-center space-y-2 sm:text-left">
         <div class="space-y-0.5">
             <p class="text-lg text-black font-semibold">
             {{player.fname}} {{player.lname}}
             </p>
-            <p class="text-slate-500 font-medium">
-            {{player.position}}
-            </p>
+            <div *ngFor="let position of player.position;let i = index" class="badge badge-secondary">{{position}}</div>
         </div>
-        <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Message</button>
-        </div>
+        <input type="range" min="1" [max]="player.stats.length" [value]="player.stats.length" class="range range-primary" step="1" />
+        <div class="w-full flex justify-between text-xs px-2">
+          <span *ngFor="let stat of player.stats">|</span>
+        </div>   
+    </div>
     </div>
 </ng-container>
 <ng-template #loading>

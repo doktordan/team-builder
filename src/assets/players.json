@@ -1,4 +1,5 @@
 [{
+	"id":1,
 	"fname":"Kobe",
 	"lname":"Bryant",
 	"position":[2,1],
@@ -50,6 +51,7 @@
 		}]
 },
 {
+	"id":2,
 	"fname":"Allen",
 	"lname":"Iverson",	
 	"position":[1,2],
@@ -101,6 +103,7 @@
 		}]
 },
 {
+	"id":3,
 	"fname":"Ray",
 	"lname":"Allen",
 	"position":[2,1],

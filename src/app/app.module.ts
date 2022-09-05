@@ -7,13 +7,15 @@ import { PlayerCardComponent } from './components/player-card/player-card.compon
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TopContainerComponent } from './components/top-container/top-container.component';
+import { StatsCardComponent } from './components/stats-card/stats-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerCardComponent,
     SearchBoxComponent,
-    TopContainerComponent
+    TopContainerComponent,
+    StatsCardComponent
   ],
   imports: [
     BrowserModule,
