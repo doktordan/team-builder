@@ -20,8 +20,12 @@ export class SearchBoxComponent implements OnInit {
 
   newStream:Observable<newStreamType> = combineLatest(this.players$, this.filters$).pipe(
    map( ([players, filters]) => {
+    let List;
+    if (filters?.length != 0){
+      List = players?.filter(player=>player.position.some(position => filters?.includes(position)))
+    }
     const object = {
-      players:players?.filter(player=>player.position)||null,
+      players:List|| players ||null,
       filters:filters||null}
     return object as newStreamType
   })

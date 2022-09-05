@@ -156,4 +156,47 @@
 			"stl":1.0,
 			"blk":0.2
 		}]
+},
+{
+	"id":4,
+	"fname":"Shaquille",
+	"lname":"O'Neal",
+	"number":34,
+	"position":[5],
+	"imageUrl":"https://www.basketball-reference.com/req/202106291/images/players/onealsh01.jpg",
+	"stats":[
+		{
+			"team":"lakers",
+			"year":2003,
+			"pts":21.5,
+			"fg":58.4,
+			"3pt":null,
+			"reb":11.5,
+			"ast":2.9,
+			"stl":0.5,
+			"blk":2.5
+		},
+		{
+			"team":"lakers",
+			"year":2002,
+			"pts":27.5,
+			"fg":57.4,
+			"3pt":null,
+			"reb":11.1,
+			"ast":3.1,
+			"stl":0.6,
+			"blk":2.4
+		},
+		{
+			"team":"lakers",
+			"year":2001,
+			"pts":27.2,
+			"fg":57.9,
+			"3pt":0,
+			"reb":10.7,
+			"ast":3.0,
+			"stl":0.6,
+			"blk":2.0
+		}
+	]
 }]
