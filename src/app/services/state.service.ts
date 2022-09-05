@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subscriber, throwError } from 'rxjs';
-import { catchError, retry, share } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 export type StatisticType = {
     "team":string;
@@ -14,13 +14,18 @@ export type StatisticType = {
     "stl":number;
     "blk":number;
 }
+export type PositionType = {
+  id:number;
+  description:string;
+}
+
 type PlayerType = {
   "id":number;
   "fname":string;
 	"lname":string;
 	"imageUrl":string;
   "number":number;
-	"stats":StatisticType[]
+	"stats":StatisticType[];
 }
 
 export interface PlayerTypeApi extends PlayerType {
@@ -28,7 +33,7 @@ export interface PlayerTypeApi extends PlayerType {
 }
 
 interface PlayerDisplayType extends PlayerType {
-  "position":string[];
+  "position":PositionType[];
   "currentStat":number;
 }
 
@@ -43,6 +48,7 @@ export class StateService {
   position:Record<number,string> = {1:'Point Guard',2:'Shooting Guard',3:'Forward',4:'Power Forward',5:'Center'}
   player$ = new BehaviorSubject<PlayerDisplayType | null>(null);
   playerS$ = new BehaviorSubject<PlayerTypeApi[]|null>(null);
+  positionFilterS$ = new BehaviorSubject<number[]|null>(null)
   constructor(private http: HttpClient) { }
 
   getPlayers(){
@@ -53,6 +59,7 @@ export class StateService {
     this.players = players;
     if (this.players.length > 0){
       this.preparePlayer(players[0]);
+      this.positionFilterS$.next([]);
       this.playerS$.next(this.players);
     }
   }
@@ -61,7 +68,11 @@ export class StateService {
     this.player$.next( {
       ...player,
       currentStat:0,
-      position:player?.position?.map((position:number)=>this.position[position])
+      position:
+      player?.position?.map(
+        (position:number)=>
+          {return {id:position,description:this.position[position]}
+        })
     })
   }
 
@@ -74,4 +85,12 @@ export class StateService {
     })
   }
 
+  setFilterPosition(value:number){
+    if (!this.positionFilterS$.value) return
+    if (!this.positionFilterS$.value.includes(value)){
+      this.positionFilterS$.next([...this.positionFilterS$.value,value]);
+    }else{
+      this.positionFilterS$.next(this.positionFilterS$.value.filter(filter => filter != value));
+    }
+  }
 }

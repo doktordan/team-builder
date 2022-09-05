@@ -13,7 +13,7 @@
                 <p class="text-lg text-black font-semibold">
                 {{player.fname}} {{player.lname}}
                 </p>
-                <div *ngFor="let position of player.position;let i = index" class="badge">{{position}}</div>
+                <button (click)="filter(position)" *ngFor="let position of player.position;let i = index"  class="badge">{{position.description}}</button>
             </div>
             <input [(ngModel)]="statPosition" (change)="updateStatPosition()" type="range" min="1" [max]="player.stats.length" class="range range-primary" step="1" />
             <div class="w-full flex justify-between text-xs px-2">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs';
-import { StateService } from 'src/app/services/state.service';
+import { PositionType, StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-player-card',
@@ -13,7 +13,12 @@ export class PlayerCardComponent implements OnInit {
   player = this.state.player$.asObservable().pipe(
     tap(player=>this.statPosition = (player?.stats.length || 0) - (player?.currentStat||0))
   )
+
   ngOnInit(): void {
+  }
+
+  filter(value:PositionType):void{
+    this.state.setFilterPosition(value.id);
   }
 
   updateStatPosition():void{

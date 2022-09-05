@@ -1,19 +1,19 @@
 <ng-container *ngIf="stats|async as stat;else loading">
     <div class="stats stats-vertical shadow w-11/12">
         <div class="stat">
-        <div class="stat-title">Team</div>
-        <div class="stat-value">{{stat.team}}</div>
-        <div class="stat-desc">{{stat.year}}</div>
+            <div class="stat-title">Team</div>
+            <div class="stat-value">{{stat.team}}</div>
+            <div class="stat-desc">{{stat.year}}</div>
         </div>
         <div class="stat">
-        <div class="stat-title">Points</div>
-        <div class="stat-value">{{stat.pts}}</div>
-        <div class="stat-desc">{{stat.fg}} (FG%)</div>
+            <div class="stat-title">Points</div>
+            <div class="stat-value">{{stat.pts}}</div>
+            <div class="stat-desc">{{stat.fg}} (FG%)</div>
         </div>
         <div class="stat">
-        <div class="stat-title">Assistance</div>
-        <div class="stat-value">{{stat.ast}}</div>
-        <div class="stat-desc">{{stat.blk}} (blocks)</div>
+            <div class="stat-title">Assistance</div>
+            <div class="stat-value">{{stat.ast}}</div>
+            <div class="stat-desc">{{stat.blk}} (blocks)</div>
         </div>
     </div>
 </ng-container>

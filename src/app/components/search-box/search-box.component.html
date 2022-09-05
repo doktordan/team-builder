@@ -1,7 +1,7 @@
-<ng-container *ngIf="players|async as players;else loading">
+<ng-container *ngIf="newStream|async as newStream;else loading">
+    <button (click)="removeFilter(filter)" *ngFor="let filter of newStream.filters" class="badge badge-secondary">{{position[filter]}}</button>
     <div class="overflow-x-auto">
         <table class="table w-full">
-          <!-- head -->
           <thead>
             <tr>
               <th></th>
@@ -11,7 +11,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let player of players">
+            <tr *ngFor="let player of newStream.players">
                 <td>
                     <div class="avatar">
                         <div class="w-10 rounded-full">
