@@ -1,4 +1,4 @@
-<ng-container *ngIf="modalS$|async as modal;else loading">
+<ng-container *ngIf="modalS$|async as modal;">
     <input type="checkbox" id="my-modal" class="modal-toggle" />
     <div class="modal">
     <div class="modal-box">
@@ -40,6 +40,3 @@
     </div>
     </div>
 </ng-container>
-<ng-template #loading>
-    <div>Loading ...</div>
-</ng-template>   
