@@ -23,7 +23,7 @@ export class SearchBoxComponent implements OnChanges {
     if (changes['players']?.currentValue){
       this.players = changes['players']?.currentValue;
     }
-    if (this.filters.length > 0 && this.players.length >0){
+    if (this.filters.length > 0 && this.players.length > 0){
       this.playersFilterd = this.players?.filter(player=>player.position.some(position => this.filters?.includes(position))) || [...this.players]  
      }else  if (this.players?.length >0){
       this.playersFilterd = [...this.players]
