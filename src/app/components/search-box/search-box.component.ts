@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { PlayerDisplayType, PlayerTypeApi, StateService } from 'src/app/services/state.service';
+import { PlayerTypeApi, StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-search-box',
@@ -9,34 +9,27 @@ import { PlayerDisplayType, PlayerTypeApi, StateService } from 'src/app/services
 export class SearchBoxComponent implements OnChanges {
   constructor(private state:StateService) {}
   position:Record<number,string> = {1:'Point Guard',2:'Shooting Guard',3:'Forward',4:'Power Forward',5:'Center'};
-  // players$ = this.state.playerS$.asObservable();
-  // filters$ = this.state.positionFilterS$.asObservable();
-  
   @Input() filters:number[] = [];
   @Input() players:PlayerTypeApi[] = [];
   @Output() filter = new EventEmitter<number>();
   @Output() player = new EventEmitter<PlayerTypeApi>();
-
-  // newStream:Observable<newStreamType> = combineLatest(this.players$, this.filters$).pipe(
-  //  map( ([players, filters]) => {
-  //   let List;
-  //   if (filters?.length != 0){
-  //     List = players?.filter(player=>player.position.some(position => filters?.includes(position)))
-  //   }
-  //   const object = {
-  //     players:List|| players ||null,
-  //     filters:filters||null}
-  //   return object as newStreamType
-  // })
-  // );
+  playersFilterd:PlayerTypeApi[] = [];
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['filters']?.currentValue?.length){
-      this.players?.filter(player=>player.position.some(position => this.filters?.includes(position)))
+    if (changes['filters']?.currentValue){
+      this.filters = changes['filters']?.currentValue;
     }
+    if (changes['players']?.currentValue){
+      this.players = changes['players']?.currentValue;
+    }
+    if (this.filters.length > 0 && this.players.length >0){
+      this.playersFilterd = this.players?.filter(player=>player.position.some(position => this.filters?.includes(position))) || [...this.players]  
+     }else  if (this.players?.length >0){
+      this.playersFilterd = [...this.players]
+     }
   }
 
   removeFilter(value:any){
-    this.filter.emit(value.id);
+    this.filter.emit(value);
   }
 
   changePlayer(player:PlayerTypeApi){

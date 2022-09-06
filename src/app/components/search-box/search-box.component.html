@@ -1,5 +1,5 @@
 
-<button (click)="removeFilter(filter)" *ngFor="let filter of filters" class="badge badge-secondary">{{filter}}</button>
+<button (click)="removeFilter(filter)" *ngFor="let filter of filters" class="badge badge-secondary">{{position[filter]}}</button>
 <div class="overflow-x-auto">
     <table class="table w-full">
       <thead>
@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let player of players">
+        <tr *ngFor="let player of playersFilterd">
             <td>
                 <div class="avatar">
                     <div class="w-10 rounded-full">

@@ -18,7 +18,7 @@ export class PlayerCardComponent implements OnChanges {
     this.max = changes['player']?.currentValue?.stats?.length || 0;
   }
 
-  applyFilter(value:PositionType):void{
+  applyFilter(value:number):void{
     this.filter.emit(value);
   }
 

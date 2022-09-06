@@ -49,12 +49,11 @@ export class TopContainerComponent implements OnInit {
 
   applyFilter($event:number):void{
     if (!this.filters.includes($event)){
-      this.filters.push($event);
+      this.filters = [...this.filters,$event];
     }else{
       this.filters = this.filters.filter(filter => filter != $event);
     }
-    console.log(this.filters);
-
+   
   }
 
 }
