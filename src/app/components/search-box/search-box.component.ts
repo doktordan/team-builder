@@ -41,4 +41,9 @@ export class SearchBoxComponent implements OnInit {
     this.state.preparePlayer(player);
   }
 
+  changeModal(player:PlayerTypeApi){
+    console.log(player);
+    this.state.changeModal(player);
+  }
+
 }

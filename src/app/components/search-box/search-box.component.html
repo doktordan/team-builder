@@ -21,7 +21,9 @@
                 </td>
                 <td>{{player.lname}}, {{player.fname}}</td>
                 <td>{{player.number}}</td>
-                <td><button (click)="changePlayer(player)" class="btn btn-active btn-primary">Select</button>
+                <td>
+                  <button (click)="changePlayer(player)" class="btn btn-active btn-primary">Select</button>
+                  <label (click)="changeModal(player)" for="my-modal" class="btn modal-button">open</label>
                 </td>
             </tr>
           </tbody>

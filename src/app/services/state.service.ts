@@ -47,6 +47,7 @@ export class StateService {
   players:PlayerTypeApi[] = [];
   position:Record<number,string> = {1:'Point Guard',2:'Shooting Guard',3:'Forward',4:'Power Forward',5:'Center'}
   player$ = new BehaviorSubject<PlayerDisplayType | null>(null);
+  modal$ = new BehaviorSubject<PlayerDisplayType | null>(null);
   playerS$ = new BehaviorSubject<PlayerTypeApi[]|null>(null);
   positionFilterS$ = new BehaviorSubject<number[]|null>(null)
   constructor(private http: HttpClient) { }
@@ -66,6 +67,18 @@ export class StateService {
 
   preparePlayer(player:PlayerTypeApi):void{
     this.player$.next( {
+      ...player,
+      currentStat:0,
+      position:
+      player?.position?.map(
+        (position:number)=>
+          {return {id:position,description:this.position[position]}
+        })
+    })
+  }
+
+  changeModal(player:PlayerTypeApi):void{
+    this.modal$.next( {
       ...player,
       currentStat:0,
       position:
