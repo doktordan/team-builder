@@ -1,33 +1,29 @@
-<ng-container *ngIf="newStream|async as newStream;else loading">
-    <button (click)="removeFilter(filter)" *ngFor="let filter of newStream.filters" class="badge badge-secondary">{{position[filter]}}</button>
-    <div class="overflow-x-auto">
-        <table class="table w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Number</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let player of newStream.players">
-                <td>
-                    <div class="avatar">
-                        <div class="w-10 rounded-full">
-                            <img [src]="player.imageUrl"/>
-                        </div>
+
+<button (click)="removeFilter(filter)" *ngFor="let filter of filters" class="badge badge-secondary">{{filter}}</button>
+<div class="overflow-x-auto">
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Number</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of players">
+            <td>
+                <div class="avatar">
+                    <div class="w-10 rounded-full">
+                        <img [src]="player.imageUrl"/>
                     </div>
-                </td>
-                <td>{{player.lname}}, {{player.fname}}</td>
-                <td>{{player.number}}</td>
-                <td><button (click)="changePlayer(player)" class="btn btn-active btn-primary">Select</button>
-                </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-</ng-container>
-<ng-template #loading>
-    <div>Loading ...</div>
-</ng-template>   
+                </div>
+            </td>
+            <td>{{player.lname}}, {{player.fname}}</td>
+            <td>{{player.number}}</td>
+            <td><button (click)="changePlayer(player)" class="btn btn-active btn-primary">Select</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

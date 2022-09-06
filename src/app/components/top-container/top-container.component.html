@@ -1,7 +1,19 @@
 <div class="card my-10 card-side w-10/12 py-8 px-8 mx-auto glass">
-    <app-stats-card class="w-3/12"></app-stats-card>
+    <ng-container *ngIf="player.stats">
+        <app-stats-card 
+        [stat]="player.stats"
+        [currentStat]="currentStat"
+        class="w-3/12"></app-stats-card>
+    </ng-container>
     <div class="card-body">
-        <app-player-card></app-player-card>
-        <app-search-box></app-search-box>
+        <app-player-card 
+        [player]="player"
+        (changeStat)="changeStat($event)"
+        (filter)="applyFilter($event)"
+        ></app-player-card>
+        <app-search-box
+        [players]="players!"
+        [filters]="filters"
+        (player)="changePlayer($event)"></app-search-box>
     </div>
   </div>

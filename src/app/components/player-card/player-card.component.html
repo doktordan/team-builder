@@ -1,27 +1,22 @@
-<ng-container *ngIf="player|async as player;else loading">
-    <div class="flex w-full content-center">
-        <div class="flex">
-            <div class="avatar">
-                <div class="w-24 rounded-full ring ring-primary">
-                  <img [src]="player.imageUrl" />
-                </div>
+<div class="flex w-full content-center">
+    <div class="flex">
+        <div class="avatar">
+            <div class="w-24 rounded-full ring ring-primary">
+                <img [src]="player.imageUrl" />
             </div>
-        </div>
-      
-        <div>
-            <div class="space-y-0.5">
-                <p class="text-lg text-black font-semibold">
-                {{player.fname}} {{player.lname}}
-                </p>
-                <button (click)="filter(position)" *ngFor="let position of player.position;let i = index"  class="badge">{{position.description}}</button>
-            </div>
-            <input [(ngModel)]="statPosition" (change)="updateStatPosition()" type="range" min="1" [max]="player.stats.length" class="range range-primary" step="1" />
-            <div class="w-full flex justify-between text-xs px-2">
-              <span *ngFor="let stat of player.stats">|</span>
-            </div>   
         </div>
     </div>
-</ng-container>
-<ng-template #loading>
-    <div>Loading ...</div>
-</ng-template>   
+    
+    <div>
+        <div class="space-y-0.5">
+            <p class="text-lg text-black font-semibold">
+            {{player.fname}} {{player.lname}}
+            </p>
+            <button (click)="applyFilter(position)" *ngFor="let position of player.position;let i = index"  class="badge">{{position.description}}</button>
+        </div>
+        <input [(ngModel)]="statPosition" (change)="updateStatPosition()" type="range" min="1" [max]="max" class="range range-primary" step="1" />
+        <div class="w-full flex justify-between text-xs px-2">
+            <span *ngFor="let stat of player.stats">|</span>
+        </div>   
+    </div>
+</div>

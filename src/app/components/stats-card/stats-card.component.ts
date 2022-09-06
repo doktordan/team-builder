@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
-import { StateService } from 'src/app/services/state.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { StatisticType } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-stats-card',
@@ -8,12 +7,21 @@ import { StateService } from 'src/app/services/state.service';
   styleUrls: ['./stats-card.component.scss']
 })
 export class StatsCardComponent implements OnInit {
+constructor() { }
+  @Input()
+  get stat(): StatisticType[] { return this._stat; }
+  set stat(stat: StatisticType[]) {
+    this._stat = stat || [];
+  }
+  private _stat = [] as StatisticType[];
 
-  constructor(private state:StateService) { }
-  stats = this.state.player$.asObservable().pipe(
-    map(player=>player?.stats[player.currentStat])
-    );
+  @Input()
+  get currentStat(): number { return this._currentStat; }
+  set currentStat(currentStat: number) {
+    this._currentStat = currentStat;
+  }
+  private _currentStat = 0;
+  
   ngOnInit(): void {
   }
-
 }

@@ -32,9 +32,8 @@ export interface PlayerTypeApi extends PlayerType {
   "position":number[];
 }
 
-interface PlayerDisplayType extends PlayerType {
+export interface PlayerDisplayType extends PlayerType {
   "position":PositionType[];
-  "currentStat":number;
 }
 
 
@@ -67,7 +66,6 @@ export class StateService {
   preparePlayer(player:PlayerTypeApi):void{
     this.player$.next( {
       ...player,
-      currentStat:0,
       position:
       player?.position?.map(
         (position:number)=>
@@ -81,7 +79,6 @@ export class StateService {
     const currentStat = (this.player$.value?.stats.length || 0) - value;
     this.player$.next({
       ...this.player$.value!,
-      currentStat
     })
   }
 
