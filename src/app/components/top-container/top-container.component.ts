@@ -11,6 +11,7 @@ export class TopContainerComponent implements OnInit {
   constructor(private state:StateService) {}
   players:PlayerTypeApi[]|null = null;
   player:PlayerDisplayType = {} as PlayerDisplayType;
+  modal:PlayerDisplayType = {} as PlayerDisplayType;
   currentStat:number = 0;
   filters:number[] = [];
   position:Record<number,string> = {1:'Point Guard',2:'Shooting Guard',3:'Forward',4:'Power Forward',5:'Center'}
@@ -38,6 +39,17 @@ export class TopContainerComponent implements OnInit {
 
   changePlayer(player:PlayerTypeApi):void{
     this.player = {
+      ...player,
+      position:
+      player?.position?.map(
+        (position:number)=>
+          {return {id:position,description:this.position[position]}
+        })
+    }
+  }
+
+  changeModal(player:PlayerTypeApi):void{
+    this.modal = {
       ...player,
       position:
       player?.position?.map(

@@ -7,14 +7,18 @@
     </ng-container>
     <div class="card-body">
         <app-player-card 
-        [player]="player"
-        (changeStat)="changeStat($event)"
-        (filter)="applyFilter($event)"
+            [player]="player"
+            (changeStat)="changeStat($event)"
+            (filter)="applyFilter($event)"
         ></app-player-card>
         <app-search-box
-        [players]="players!"
-        [filters]="filters"
-        (filter)="applyFilter($event)"
-        (player)="changePlayer($event)"></app-search-box>
+            [players]="players!"
+            [filters]="filters"
+            (filter)="applyFilter($event)"
+            (player)="changePlayer($event)"
+            (modal)="changeModal($event)"
+        >
+        </app-search-box>
     </div>
   </div>
+<app-modal  [player]="modal"></app-modal>

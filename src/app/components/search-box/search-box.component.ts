@@ -13,6 +13,8 @@ export class SearchBoxComponent implements OnChanges {
   @Input() players:PlayerTypeApi[] = [];
   @Output() filter = new EventEmitter<number>();
   @Output() player = new EventEmitter<PlayerTypeApi>();
+  @Output() modal = new EventEmitter<PlayerTypeApi>();
+
   playersFilterd:PlayerTypeApi[] = [];
   ngOnChanges(changes: SimpleChanges) {
     if (changes['filters']?.currentValue){
@@ -36,4 +38,7 @@ export class SearchBoxComponent implements OnChanges {
     this.player.emit(player);
   }
 
+  changeModal(player:PlayerTypeApi){
+    this.modal.emit(player);
+  }
 }

@@ -1,0 +1,39 @@
+
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+<div class="modal">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">{{player.fname}} {{player.lname}}</h3>
+        <div class="flex">
+            <div class="m-auto">
+                <div class="avatar">
+                    <div class="w-24 rounded-full ring ring-primary">
+                    <img [src]="player.imageUrl" />
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                  <thead>
+                    <tr>
+                      <th>Team</th>
+                      <th>Year</th>
+                      <th>Pts</th>
+                      <th>Assistance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let stat of player.stats">
+                        <th>{{stat.team}}</th>
+                        <th>{{stat.year}}</th>
+                        <th>{{stat.pts}}</th>
+                        <th>{{stat.ast}}</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+        <div class="modal-action">
+        <label for="my-modal" class="btn">Okay</label>
+        </div>
+    </div>
+</div>

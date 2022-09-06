@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { PlayerDisplayType, PositionType, StateService } from 'src/app/services/state.service';
+import { PlayerDisplayType} from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-player-card',
